@@ -18,6 +18,7 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src/
   exposed-modules:     Doukaku.Nonbiri
+                     , Doukaku.Baseball
   other-modules:
   build-depends:       base >=4.6 && <4.7
   default-language:    Haskell2010
@@ -34,6 +35,18 @@ executable nonbiri
 Test-Suite test-nonbiri
   type:                detailed-0.9
   test-module:         Doukaku.NonbiriTest
+  other-modules:       Doukaku.TestHelper
+  build-depends:       base >=4.6 && <4.7
+                     , directory
+                     , Cabal >= 1.9.2
+                     , split
+                     , doukaku-advent2013
+  hs-source-dirs:      test/
+  default-language:    Haskell2010
+
+Test-Suite test-baseball
+  type:                detailed-0.9
+  test-module:         Doukaku.BaseballTest
   other-modules:       Doukaku.TestHelper
   build-depends:       base >=4.6 && <4.7
                      , directory
