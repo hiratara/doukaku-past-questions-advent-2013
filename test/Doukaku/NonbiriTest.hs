@@ -1,5 +1,7 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 module Doukaku.NonbiriTest (tests) where
 
+import Control.Exception (SomeException, catch)
 import Distribution.TestSuite
 import Data.List.Split
 import qualified Doukaku.Nonbiri as Nonbiri
@@ -17,10 +19,8 @@ tests = map (wrap Nonbiri.solve) `fmap` testCases
 
 wrap :: (String -> String) -> (Int, String, String) -> Test
 wrap impl (n, input, output) = Test $ TestInstance {
-    run = (return . Finished) (let result = impl input
-                               in if result == output
-                                  then Pass
-                                  else Fail (result ++ " /= " ++ output))
+  run = run' `catch` (\(e :: SomeException) ->
+                       return . Finished . Fail . show $ e)
   , name = "Test " ++ show n
   , tags = []
   , options = []
@@ -28,3 +28,9 @@ wrap impl (n, input, output) = Test $ TestInstance {
   }
   where
     unwrap (Test inst) = inst
+    run' = do
+      let solved = impl input
+      let result = if solved == output
+                   then Pass
+                   else Fail (solved ++ " /= " ++ output)
+      return . Finished $! result
