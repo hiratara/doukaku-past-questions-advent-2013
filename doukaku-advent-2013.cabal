@@ -34,6 +34,7 @@ executable nonbiri
 Test-Suite test-nonbiri
   type:                detailed-0.9
   test-module:         Doukaku.NonbiriTest
+  other-modules:       Doukaku.TestHelper
   build-depends:       base >=4.6 && <4.7
                      , directory
                      , Cabal >= 1.9.2
