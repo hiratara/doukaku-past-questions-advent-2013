@@ -10,8 +10,24 @@ data DoukakuTest = DoukakuTest {
   , solve   :: String -> String
   }
 
+wrapIOErrorProgress :: SomeException -> IO Progress
+wrapIOErrorProgress = return . Finished . Fail . show
+
+wrapIOErrorTest :: SomeException -> Test
+wrapIOErrorTest e = Test $ TestInstance {
+  run = wrapIOErrorProgress e
+  , name = "Abort by exception"
+  , tags = []
+  , options = []
+  , setOption = const . const . Right . unwrap . wrapIOErrorTest $ e
+  }
+  where
+    unwrap (Test inst) = inst
+
 createTests :: DoukakuTest -> IO [Test]
-createTests def = map (wrap . solve $ def) `fmap` testCases (tsvPath def)
+createTests def = createTests' `catch` (return . (: []) . wrapIOErrorTest)
+  where
+    createTests' = map (wrap . solve $ def) `fmap` testCases (tsvPath def)
 
 testCases :: FilePath -> IO [(Int, String, String)]
 testCases p = do
@@ -23,8 +39,7 @@ testCases p = do
 
 wrap :: (String -> String) -> (Int, String, String) -> Test
 wrap impl (n, input, output) = Test $ TestInstance {
-  run = run' `catch` (\(e :: SomeException) ->
-                       return . Finished . Fail . show $ e)
+  run = run' `catch` wrapIOErrorProgress
   , name = "Test " ++ show n
   , tags = []
   , options = []
