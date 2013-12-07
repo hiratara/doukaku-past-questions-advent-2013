@@ -5,4 +5,4 @@ import Doukaku.TestHelper
 import qualified Doukaku.Baseball as Baseball
 
 tests :: IO [Test]
-tests = createTests $ DoukakuTest "test/Doukaku/baseball.tsv" Baseball.solve
+tests = createTests $ newDoukakuTest {tsvPath = "test/Doukaku/baseball.tsv", solve = Baseball.solve}

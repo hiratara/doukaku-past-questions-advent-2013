@@ -5,4 +5,4 @@ import Doukaku.TestHelper
 import qualified Doukaku.TwoTone as TwoTone
 
 tests :: IO [Test]
-tests = createTests $ DoukakuTest "test/Doukaku/twotone.tsv" TwoTone.solve
+tests = createTests $ newDoukakuTest {tsvPath = "test/Doukaku/twotone.tsv", solve = TwoTone.solve}

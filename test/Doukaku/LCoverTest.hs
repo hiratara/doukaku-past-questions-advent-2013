@@ -5,4 +5,4 @@ import Doukaku.TestHelper
 import qualified Doukaku.LCover as LCover
 
 tests :: IO [Test]
-tests = createTests $ DoukakuTest "test/Doukaku/lcover.tsv" LCover.solve
+tests = createTests $ newDoukakuTest {tsvPath = "test/Doukaku/lcover.tsv", solve = LCover.solve}

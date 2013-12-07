@@ -5,4 +5,4 @@ import Doukaku.TestHelper
 import qualified Doukaku.Tousa as Tousa
 
 tests :: IO [Test]
-tests = createTests $ DoukakuTest "test/Doukaku/tousa.tsv" Tousa.solve
+tests = createTests $ newDoukakuTest {tsvPath = "test/Doukaku/tousa.tsv", solve = Tousa.solve}

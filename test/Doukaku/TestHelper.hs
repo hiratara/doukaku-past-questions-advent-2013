@@ -1,5 +1,5 @@
 {-# LANGUAGE ScopedTypeVariables #-}
-module Doukaku.TestHelper (DoukakuTest (..), createTests) where
+module Doukaku.TestHelper (DoukakuTest(..), newDoukakuTest, createTests) where
 
 import Control.Exception (SomeException, catch)
 import Distribution.TestSuite
@@ -8,6 +8,14 @@ import Data.List.Split
 data DoukakuTest = DoukakuTest {
     tsvPath :: FilePath
   , solve   :: String -> String
+  , eq      :: String -> String -> Bool
+  }
+
+newDoukakuTest :: DoukakuTest
+newDoukakuTest = DoukakuTest {
+  tsvPath = error "You must specify the tsvPath field"
+  , solve = error "You must specify the solve field"
+  , eq = (==)
   }
 
 wrapIOErrorProgress :: SomeException -> IO Progress
@@ -27,7 +35,7 @@ wrapIOErrorTest e = Test $ TestInstance {
 createTests :: DoukakuTest -> IO [Test]
 createTests def = createTests' `catch` (return . (: []) . wrapIOErrorTest)
   where
-    createTests' = map (wrap . solve $ def) `fmap` testCases (tsvPath def)
+    createTests' = map (wrap (solve def) (eq def)) `fmap` testCases (tsvPath def)
 
 testCases :: FilePath -> IO [(Int, String, String)]
 testCases p = do
@@ -37,19 +45,19 @@ testCases p = do
     parseLine l = let (n:input:output:_) = splitOn "\t" l
                   in (read n, input, output)
 
-wrap :: (String -> String) -> (Int, String, String) -> Test
-wrap impl (n, input, output) = Test $ TestInstance {
+wrap :: (String -> String) -> (String -> String -> Bool) -> (Int, String, String) -> Test
+wrap impl cmp (n, input, output) = Test $ TestInstance {
   run = run' `catch` wrapIOErrorProgress
   , name = "Test " ++ show n
   , tags = []
   , options = []
-  , setOption = const . const . Right . unwrap . wrap impl $ (n, input, output)
+  , setOption = const . const . Right . unwrap . wrap impl cmp $ (n, input, output)
   }
   where
     unwrap (Test inst) = inst
     run' = do
       let solved = impl input
-      let result = if solved == output
+      let result = if solved `cmp` output
                    then Pass
                    else Fail (solved ++ " /= " ++ output)
       return . Finished $! result

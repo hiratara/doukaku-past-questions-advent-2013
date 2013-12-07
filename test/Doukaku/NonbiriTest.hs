@@ -6,4 +6,4 @@ import Doukaku.TestHelper
 import qualified Doukaku.Nonbiri as Nonbiri
 
 tests :: IO [Test]
-tests = createTests $ DoukakuTest "test/Doukaku/nonbiri.tsv" Nonbiri.solve
+tests = createTests $ newDoukakuTest {tsvPath = "test/Doukaku/nonbiri.tsv", solve = Nonbiri.solve}

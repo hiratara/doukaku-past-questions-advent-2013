@@ -5,4 +5,4 @@ import Doukaku.TestHelper
 import qualified Doukaku.UpDownButton as UpDownButton
 
 tests :: IO [Test]
-tests = createTests $ DoukakuTest "test/Doukaku/updownbutton.tsv" UpDownButton.solve
+tests = createTests $ newDoukakuTest {tsvPath = "test/Doukaku/updownbutton.tsv", solve = UpDownButton.solve}

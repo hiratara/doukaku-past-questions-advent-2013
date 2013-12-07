@@ -5,4 +5,4 @@ import Doukaku.TestHelper
 import qualified Doukaku.Tetromino as Tetromino
 
 tests :: IO [Test]
-tests = createTests $ DoukakuTest "test/Doukaku/tetromino.tsv" Tetromino.solve
+tests = createTests $ newDoukakuTest {tsvPath = "test/Doukaku/tetromino.tsv", solve = Tetromino.solve}
