@@ -26,7 +26,7 @@ library
                      , Doukaku.LCover
                      , Doukaku.Anagram
   other-modules:
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base
                      , lens
                      , containers
                      , split
@@ -36,9 +36,9 @@ Test-Suite test-nonbiri
   type:                detailed-0.9
   test-module:         Doukaku.NonbiriTest
   other-modules:       Doukaku.TestHelper
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base
                      , directory
-                     , Cabal >= 1.9.2
+                     , Cabal >= 1.16.0
                      , split
                      , doukaku-advent2013
   hs-source-dirs:      test/
@@ -48,9 +48,9 @@ Test-Suite test-baseball
   type:                detailed-0.9
   test-module:         Doukaku.BaseballTest
   other-modules:       Doukaku.TestHelper
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base
                      , directory
-                     , Cabal >= 1.9.2
+                     , Cabal >= 1.16.0
                      , split
                      , doukaku-advent2013
   hs-source-dirs:      test/
@@ -60,9 +60,9 @@ Test-Suite test-tousa
   type:                detailed-0.9
   test-module:         Doukaku.TousaTest
   other-modules:       Doukaku.TestHelper
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base
                      , directory
-                     , Cabal >= 1.9.2
+                     , Cabal >= 1.16.0
                      , split
                      , doukaku-advent2013
   hs-source-dirs:      test/
@@ -72,9 +72,9 @@ Test-Suite test-twotone
   type:                detailed-0.9
   test-module:         Doukaku.TwoToneTest
   other-modules:       Doukaku.TestHelper
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base
                      , directory
-                     , Cabal >= 1.9.2
+                     , Cabal >= 1.16.0
                      , split
                      , doukaku-advent2013
   hs-source-dirs:      test/
@@ -84,9 +84,9 @@ Test-Suite test-updownbutton
   type:                detailed-0.9
   test-module:         Doukaku.UpDownButtonTest
   other-modules:       Doukaku.TestHelper
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base
                      , directory
-                     , Cabal >= 1.9.2
+                     , Cabal >= 1.16.0
                      , split
                      , doukaku-advent2013
   hs-source-dirs:      test/
@@ -96,9 +96,9 @@ Test-Suite test-tetromino
   type:                detailed-0.9
   test-module:         Doukaku.TetrominoTest
   other-modules:       Doukaku.TestHelper
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base
                      , directory
-                     , Cabal >= 1.9.2
+                     , Cabal >= 1.16.0
                      , split
                      , doukaku-advent2013
   hs-source-dirs:      test/
@@ -108,9 +108,9 @@ Test-Suite test-lcover
   type:                detailed-0.9
   test-module:         Doukaku.LCoverTest
   other-modules:       Doukaku.TestHelper
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base
                      , directory
-                     , Cabal >= 1.9.2
+                     , Cabal >= 1.16.0
                      , split
                      , doukaku-advent2013
   hs-source-dirs:      test/
@@ -120,9 +120,9 @@ Test-Suite test-anagram
   type:                detailed-0.9
   test-module:         Doukaku.AnagramTest
   other-modules:       Doukaku.TestHelper
-  build-depends:       base >=4.6 && <4.7
+  build-depends:       base
                      , directory
-                     , Cabal >= 1.9.2
+                     , Cabal >= 1.16.0
                      , split
                      , doukaku-advent2013
   hs-source-dirs:      test/

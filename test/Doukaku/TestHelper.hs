@@ -1,9 +1,13 @@
-{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE CPP, ScopedTypeVariables #-}
 module Doukaku.TestHelper (DoukakuTest(..), newDoukakuTest, createTests) where
 
 import Control.Exception (SomeException, catch)
 import Distribution.TestSuite
 import Data.List.Split
+# if defined(__GLASGOW_HASKELL__) && (__GLASGOW_HASKELL__ >= 706)
+# else
+import Prelude hiding (catch)
+# endif
 
 data DoukakuTest = DoukakuTest {
     tsvPath :: FilePath
