@@ -26,6 +26,7 @@ library
                      , Doukaku.LCover
                      , Doukaku.Anagram
                      , Doukaku.Hukashigi
+                     , Doukaku.Aquarium
   other-modules:
   build-depends:       base
                      , lens
@@ -132,6 +133,18 @@ Test-Suite test-anagram
 Test-Suite test-hukashigi
   type:                detailed-0.9
   test-module:         Doukaku.HukashigiTest
+  other-modules:       Doukaku.TestHelper
+  build-depends:       base
+                     , directory
+                     , Cabal >= 1.16.0
+                     , split
+                     , doukaku-advent2013
+  hs-source-dirs:      test/
+  default-language:    Haskell2010
+
+Test-Suite test-aquarium
+  type:                detailed-0.9
+  test-module:         Doukaku.AquariumTest
   other-modules:       Doukaku.TestHelper
   build-depends:       base
                      , directory
