@@ -31,6 +31,7 @@ library
                      , Doukaku.Rails
                      , Doukaku.XYSort
                      , Doukaku.CrossCircle
+                     , Doukaku.Entropy
   other-modules:
   build-depends:       base
                      , lens
@@ -198,6 +199,18 @@ Test-Suite test-xysort
 Test-Suite test-crosscircle
   type:                detailed-0.9
   test-module:         Doukaku.CrossCircleTest
+  other-modules:       Doukaku.TestHelper
+  build-depends:       base
+                     , directory
+                     , Cabal >= 1.16.0
+                     , split
+                     , doukaku-advent2013
+  hs-source-dirs:      test/
+  default-language:    Haskell2010
+
+Test-Suite test-entropy
+  type:                detailed-0.9
+  test-module:         Doukaku.EntropyTest
   other-modules:       Doukaku.TestHelper
   build-depends:       base
                      , directory
