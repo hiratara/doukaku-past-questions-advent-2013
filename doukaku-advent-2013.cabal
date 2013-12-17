@@ -34,6 +34,7 @@ library
                      , Doukaku.Entropy
                      , Doukaku.Bomberman
                      , Doukaku.YRoad
+                     , Doukaku.Gobang
   other-modules:
   build-depends:       base
                      , lens
@@ -238,6 +239,18 @@ Test-Suite test-bomberman
 Test-Suite test-yroad
   type:                detailed-0.9
   test-module:         Doukaku.YRoadTest
+  other-modules:       Doukaku.TestHelper
+  build-depends:       base
+                     , directory
+                     , Cabal >= 1.16.0
+                     , split
+                     , doukaku-advent2013
+  hs-source-dirs:      test/
+  default-language:    Haskell2010
+
+Test-Suite test-gobang
+  type:                detailed-0.9
+  test-module:         Doukaku.GobangTest
   other-modules:       Doukaku.TestHelper
   build-depends:       base
                      , directory
