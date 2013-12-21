@@ -36,6 +36,7 @@ library
                      , Doukaku.YRoad
                      , Doukaku.Gobang
                      , Doukaku.Bus
+                     , Doukaku.PoorMan
   other-modules:
   build-depends:       base
                      , lens
@@ -268,6 +269,18 @@ Test-Suite test-bus
   build-depends:       base
                      , directory
                      , Cabal >= 1.16.0
+                     , split
+                     , doukaku-advent2013
+  hs-source-dirs:      test/
+  default-language:    Haskell2010
+
+Test-Suite test-poorman
+  type:                detailed-0.9
+  test-module:         Doukaku.PoorManTest
+  other-modules:       Doukaku.TestHelper
+  build-depends:       base >=4.6 && <4.7
+                     , directory
+                     , Cabal >= 1.9.2
                      , split
                      , doukaku-advent2013
   hs-source-dirs:      test/
