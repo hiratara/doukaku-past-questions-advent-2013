@@ -4,6 +4,7 @@ module Doukaku.TestHelper (DoukakuTest(..), newDoukakuTest, createTests) where
 import Control.Exception (SomeException, catch)
 import Distribution.TestSuite
 import Data.List.Split
+import Control.DeepSeq (($!!))
 # if defined(__GLASGOW_HASKELL__) && (__GLASGOW_HASKELL__ >= 706)
 # else
 import Prelude hiding (catch)
@@ -63,5 +64,5 @@ wrap impl cmp (n, input, output) = Test $ TestInstance {
       let solved = impl input
       let result = if solved `cmp` output
                    then Pass
-                   else Fail (solved ++ " /= " ++ output)
+                   else Fail . (++ " /= " ++ output) $!! solved
       return . Finished $! result
