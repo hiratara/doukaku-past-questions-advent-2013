@@ -41,6 +41,7 @@ library
                      , Doukaku.Numbers
                      , Doukaku.LAndLs
                      , Doukaku.Dice
+                     , Doukaku.Poker
   other-modules:
   build-depends:       base
                      , lens
@@ -352,6 +353,19 @@ Test-Suite test-landls
 Test-Suite test-dice
   type:                detailed-0.9
   test-module:         Doukaku.DiceTest
+  other-modules:       Doukaku.TestHelper
+  build-depends:       base >=4.6 && <4.7
+                     , directory
+                     , Cabal >= 1.9.2
+                     , split
+                     , deepseq
+                     , doukaku-advent2013
+  hs-source-dirs:      test/
+  default-language:    Haskell2010
+
+Test-Suite test-poker
+  type:                detailed-0.9
+  test-module:         Doukaku.PokerTest
   other-modules:       Doukaku.TestHelper
   build-depends:       base >=4.6 && <4.7
                      , directory
